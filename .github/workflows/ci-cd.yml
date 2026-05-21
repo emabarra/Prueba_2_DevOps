@@ -22,7 +22,7 @@ jobs:
         cache: maven
 
     - name: Ejecutar Pruebas Unitarias (JUnit)
-      run: mvn test
+      run: ./mvnw test
 
   security-analysis:
     needs: build-and-test
@@ -32,12 +32,14 @@ jobs:
     - name: Configurar el código fuente
       uses: actions/checkout@v4
 
+
+    - name: Instalar Snyk CLI
+      uses: snyk/actions/setup@master
+
     - name: Ejecutar Snyk para buscar vulnerabilidades
-      uses: snyk/actions/maven@master
+      run: snyk test --severity-threshold=high
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --severity-threshold=high
 
   deploy-simulated:
     needs: security-analysis
