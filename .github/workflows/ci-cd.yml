@@ -7,6 +7,9 @@ on:
     branches: [ "main" ]
 
 jobs:
+  # -----------------------------------------------------------------
+  # JOB 1: Compilación y Pruebas Unitarias (IE2)
+  # -----------------------------------------------------------------
   build-and-test:
     runs-on: ubuntu-latest
 
@@ -21,9 +24,16 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    # Automatización del permiso de ejecución para evitar el error de Linux (Permission Denied)
+    - name: Dar permisos de ejecucion al Maven Wrapper en Linux
+      run: chmod +x ./mvnw
+
     - name: Ejecutar Pruebas Unitarias (JUnit)
       run: ./mvnw test
 
+  # -----------------------------------------------------------------
+  # JOB 2: Análisis de Seguridad y Calidad (IE3)
+  # -----------------------------------------------------------------
   security-analysis:
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -31,7 +41,6 @@ jobs:
     steps:
     - name: Configurar el código fuente
       uses: actions/checkout@v4
-
 
     - name: Instalar Snyk CLI
       uses: snyk/actions/setup@master
@@ -41,6 +50,9 @@ jobs:
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
+  # -----------------------------------------------------------------
+  # JOB 3: Construcción de Imagen y Despliegue Simulado (IE1, IE4, IE5)
+  # -----------------------------------------------------------------
   deploy-simulated:
     needs: security-analysis
     runs-on: ubuntu-latest
