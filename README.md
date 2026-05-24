@@ -24,3 +24,8 @@ docker compose up --build
 
 * **Calidad**:
   Está resguardada porque el pipeline funciona como un filtro automático: si el código contiene errores, si no pasa las pruebas unitarias o si **dependabot.yml** detecta alguna falla de seguridad, el despliegue se frena de inmediato. El proyecto no avanza si no está correcto.
+
+## 📊 JaCoCo
+El proyecto utiliza **JaCoCo** para generar reportes del proyecto.
+Para poder visualizar las análiticas hay que buscar esta ruta en la carpeta:
+`target/site/jacoco/index.html`
