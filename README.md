@@ -15,7 +15,7 @@ Los componentes necesarios para la correcta ejecución de este repositorio son:
 ## 💻 Cómo ejecutar el proyecto
 Para la correcta ejecución del proyecto de manera local hay que ejecutar este comando en la terminal de su preferencia en la raiz del proyecto:
 ```bash
-docker compose up --build
+docker compose up -d
 ```
 ## 🎯¿Cómo se garantiza la calidad y trazabilidad?
  * **Trazabilidad:**
