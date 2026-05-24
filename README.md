@@ -13,7 +13,7 @@ Los componentes necesarios para la correcta ejecución de este repositorio son:
 - **`dependabot.yml`**: Configuración de seguridad pasiva que audita semanalmente el archivo `pom.xml` en busca de dependencias obsoletas o vulnerables.
 
 ## 💻 Cómo ejecutar el proyecto
-Para la correcta ejecución del proyecto de manera local hay que ejecutar este comando en la terminal de su preferencia:
+Para la correcta ejecución del proyecto de manera local hay que ejecutar este comando en la terminal de su preferencia en la raiz del proyecto:
 ```bash
 docker compose up --build
 ```
